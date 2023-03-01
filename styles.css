@@ -62,4 +62,100 @@ a:not([class]) {
 
 body {
     font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    background-color: var(--primary-one);
+    background-image: url(./images/bg-intro-desktop.png);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1em;
+}
+
+.left, .right {
+    max-width: 30em;
+    border: 1px solid black;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.4em;
+}
+h1 {
+  font-size: 2.8em;
+  line-height: 1;
+}
+
+ .left p {
+  font-size: 0.9em;
+ }
+
+ h2 {
+  font-size: 0.9em;
+  font-weight: 400;
+  background-color: var(--accent);
+  padding: 1.5em;
+  text-align: center;
+  border-radius: 8px;
+  /* need box shaddow */
+ }
+
+ h2 span {
+  font-weight: 600;
+ }
+
+ form {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 2em;
+  border-radius: 10px;
+  /* need box shadow */
+ }
+
+ input {
+  padding: 1.1em 2em;
+  border: 1px solid var(--neutral-two);
+  border-radius: 8px;
+  color: var(--neutral-one);
+ }
+
+input,
+input::placeholder {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: var(--neutral-two); /* on focus change to one */
+}
+
+ #submit {
+  background-color: var(--primary-two);
+  border: none;
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  padding: 1em;
+  /* needs box shadow */
+ }
+
+ form p {
+  color: var(--neutral-two);
+  font-size: 0.6em;
+  text-align: center;
+ }
+
+ form p span {
+  color: var(--primary-one);
+  font-weight: 600;
+ }
+
+ 
