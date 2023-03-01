@@ -145,10 +145,18 @@ input,
 input::placeholder {
   font-size: 0.9em;
   font-weight: 600;
-  color: var(--neutral-two); /* on focus change to one */
+  /*color: var(--neutral-two); /* on focus change to one */
 }
 
- #submit {
+input {
+  color: var(--neutral-one);
+}
+
+input::placeholder {
+  color: var(--neutral-two);
+}
+
+ #submitBtn {
   background-color: var(--primary-two);
   border: none;
   color: white;

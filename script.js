@@ -45,8 +45,10 @@ form.addEventListener("submit", function(event) {
         console.log("email valid");
         removeInvalidError(email);
     }
-
-});
+    if (submit) {
+        form.submit();
+    }
+}); 
 
 function isEmpty(input) {
     if (input.value === null || input.value === ""){
