@@ -11,29 +11,54 @@ console.log(firstName, lastName, email, password);
 
 form.addEventListener("submit", function(event) {
     console.log("form submitted");
-    //for each, we need to check if valid if not display error
+    event.preventDefault();
     let submit = true;
-    if (firstName.checkValidity()) {
-        console.log("missing a name");
+    //for each, we need to check if valid if not display error
+    if (isEmpty(firstName)) {
         displayEmptyError(firstName);
         submit = false;
     }
-    if (lastName.checkValidity()) {
+    else {
+        console.log("name was valid");
+        removeEmptyError(firstName);
+    }
+    if (isEmpty(lastName)) {
         displayEmptyError(lastName);
         submit = false;
     }
-    if (password.checkValidity()) {
+    else {
+        removeEmptyError(lastName);
+    }
+    if (isEmpty(password)) {
         displayEmptyError(password);
         submit = false;
     }
-    if (email.validity.valueMissing || !email.validity.typeMismatch) {
+    else {
+        removeEmptyError(password);
+    }
+    if (!isValidEmail(email)) {
+        console.log("email invalid");
         displayInvalidError(email);
         submit = false;
     }
-    if (!submit){
-        event.preventDefault(); //don't submit form
+    else {
+        console.log("email valid");
+        removeInvalidError(email);
     }
+
 });
+
+function isEmpty(input) {
+    if (input.value === null || input.value === ""){
+        return true;
+    }
+    return false;
+}
+
+function isValidEmail(input) {
+    const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    return emailRegExp.test(input.value);
+}
 
 function highlightError(input) {
     input.style.backgroundImage = "url('./images/icon-error.svg')";
@@ -46,19 +71,46 @@ function highlightError(input) {
 function displayEmptyError(input) {
     highlightError(input);
 
-    const warning = document.createElement("p");
-    warning.setAttribute("class", "warning");
-    warning.innerText = `${input.placeholder} cannot be empty`;
+    //need to check if the warning is already displayed
+    const sibling = input.nextSibling;
+    if (sibling !== null && sibling.nodeName !== "P"){
+        const warning = document.createElement("p");
+        warning.setAttribute("class", "warning");
+        warning.innerText = `${input.placeholder} cannot be empty`;
 
-    input.after(warning); //insert warning after input
+        input.after(warning); //insert warning after input
+    }
 }
 
 function displayInvalidError(input) {
     highlightError(input);
+    const sibling = input.nextSibling;
+    if (sibling !== null && sibling.nodeName !== "P"){
+        const warning = document.createElement("p");
+        warning.setAttribute("class", "warning");
+        warning.innerText = `Looks like this is not a valid ${input.placeholder.toLowerCase()}`;
 
-    const warning = document.createElement("p");
-    warning.setAttribute("class", "warning");
-    warning.innerText = `Looks like this is not a valid ${input.placeholder.toLowerCase()}`;
+        input.after(warning);
+    }
+}
 
-    input.after(warning);
+function removeEmptyError(input) {
+    removeHighlightError(input);
+    const sibling = input.nextSibling;
+    if (sibling !== null && sibling.nodeName === "P"){
+        sibling.remove();
+    }
+}
+
+function removeInvalidError(input) {
+    removeHighlightError(input);
+    const sibling = input.nextSibling;
+    if (sibling !== null && sibling.nodeName === "P"){
+        sibling.remove();
+    }
+}
+
+function removeHighlightError(input) {
+    input.style.background = "none";
+    input.style.border = "1px solid hsl(249, 10%, 26%)";
 }
