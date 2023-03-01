@@ -60,3 +60,6 @@ a:not([class]) {
 }
 /* end reset */
 
+body {
+    font-family: "Poppins", sans-serif;
+}
