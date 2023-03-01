@@ -69,6 +69,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1em;
     color: white;
 }
 
@@ -76,11 +77,11 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 1em;
+  margin: 2em;
 }
 
 .left, .right {
     max-width: 30em;
-    border: 1px solid black;
 }
 
 .left {
@@ -90,6 +91,7 @@ main {
   align-items: center;
   gap: 1.4em;
 }
+
 h1 {
   font-size: 2.8em;
   line-height: 1;
@@ -106,7 +108,7 @@ h1 {
   padding: 1.5em;
   text-align: center;
   border-radius: 8px;
-  /* need box shaddow */
+  box-shadow: 0px 5px 1px 0px rgba(0, 0, 0, 0.2);
  }
 
  h2 span {
@@ -120,13 +122,22 @@ h1 {
   gap: 1em;
   padding: 2em;
   border-radius: 10px;
-  /* need box shadow */
+  box-shadow: 0px 5px 1px 0px rgba(0, 0, 0, 0.2);
  }
 
  input {
   padding: 1.1em 2em;
   border: 1px solid var(--neutral-two);
   border-radius: 8px;
+  color: var(--neutral-one);
+ }
+
+ input:focus-within {
+  outline: none;
+  border: 1px solid var(--neutral-one);
+ }
+
+ input:focus-within, input::placeholder:focus-within {
   color: var(--neutral-one);
  }
 
@@ -144,7 +155,7 @@ input::placeholder {
   text-transform: uppercase;
   font-size: 0.9em;
   padding: 1em;
-  /* needs box shadow */
+  box-shadow: 0px 3px 1px 0px rgba(0, 0, 0, 0.2);
  }
 
  form p {
@@ -158,4 +169,23 @@ input::placeholder {
   font-weight: 600;
  }
 
- 
+ input:invalid {
+  border: 2px solid var(--primary-one);
+ }
+
+ p.warning {
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.65em;
+  text-align: right;
+  color: var(--primary-one);
+  margin-top: -1em;
+ }
+
+ .attribution { 
+  font-size: 11px; 
+  text-align: center; 
+ }
+ .attribution a {
+  color: white;
+ }
