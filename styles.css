@@ -145,7 +145,6 @@ input,
 input::placeholder {
   font-size: 0.9em;
   font-weight: 600;
-  /*color: var(--neutral-two); /* on focus change to one */
 }
 
 input {
@@ -175,6 +174,10 @@ input::placeholder {
  form p span {
   color: var(--primary-one);
   font-weight: 600;
+ }
+
+ .disclaimer a {
+  text-decoration: none;
  }
 
  p.warning {

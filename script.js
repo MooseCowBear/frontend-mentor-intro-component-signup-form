@@ -7,10 +7,7 @@ const password = document.getElementById("password");
 
 console.log(firstName, lastName, email, password);
 
-//on change events to keep the color of neutral one when input to form
-
 form.addEventListener("submit", function(event) {
-    console.log("form submitted");
     event.preventDefault();
     const firstNameValid = acceptInput(firstName);
     const lastNameValid = acceptInput(lastName);
@@ -19,11 +16,9 @@ form.addEventListener("submit", function(event) {
 
     if (firstNameValid && lastNameValid && passwordValid && emailVaild) {
         form.submit();
-        console.log("everything filled. okay to submit");
     }
 });
 
-//replace above with 
 function acceptEmail() {
     if (email.value.length === 0) {
         displayEmptyError(email);
@@ -39,6 +34,11 @@ function acceptEmail() {
         removeInvalidError(email);
     }
     return true;
+
+    function isValidEmail(input) {
+        const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        return emailRegExp.test(input.value);
+    }
 }
 
 function acceptInput(input) {
@@ -49,11 +49,6 @@ function acceptInput(input) {
     }
     removeEmptyError(input);
     return true;
-}
-
-function isValidEmail(input) {
-    const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    return emailRegExp.test(input.value);
 }
 
 function highlightError(input) {
@@ -74,7 +69,7 @@ function displayEmptyError(input) {
         warning.setAttribute("class", "warning");
         warning.innerText = `${input.placeholder} cannot be empty`;
 
-        input.after(warning); //insert warning after input
+        input.after(warning); 
     }
 }
 
