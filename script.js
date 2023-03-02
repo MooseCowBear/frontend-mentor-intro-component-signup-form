@@ -57,6 +57,7 @@ function highlightError(input) {
     input.style.backgroundPosition = "center right 1em";
 
     input.style.border = "2px solid hsl(0, 100%, 74%)";
+    input.style.color = "hsl(0, 100%, 74%)";
 }
 
 function displayEmptyError(input) {
@@ -96,4 +97,5 @@ function removeError(input) {
 function removeHighlightError(input) {
     input.style.background = "none";
     input.style.border = "1px solid hsl(249, 10%, 26%)";
+    input.style.color = "hsl(249, 10%, 26%)";
 }
