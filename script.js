@@ -12,49 +12,43 @@ console.log(firstName, lastName, email, password);
 form.addEventListener("submit", function(event) {
     console.log("form submitted");
     event.preventDefault();
-    let submit = true;
-    //for each, we need to check if valid if not display error
-    if (isEmpty(firstName)) {
-        displayEmptyError(firstName);
-        submit = false;
+    const firstNameValid = acceptInput(firstName);
+    const lastNameValid = acceptInput(lastName);
+    const passwordValid = acceptInput(password);
+    const emailVaild = acceptEmail();
+
+    if (firstNameValid && lastNameValid && passwordValid && emailVaild) {
+        form.submit();
+        console.log("everything filled. okay to submit");
     }
-    else {
-        console.log("name was valid");
-        removeEmptyError(firstName);
+});
+
+//replace above with 
+function acceptEmail() {
+    if (email.value.length === 0) {
+        displayEmptyError(email);
+        return false;
     }
-    if (isEmpty(lastName)) {
-        displayEmptyError(lastName);
-        submit = false;
-    }
-    else {
-        removeEmptyError(lastName);
-    }
-    if (isEmpty(password)) {
-        displayEmptyError(password);
-        submit = false;
-    }
-    else {
-        removeEmptyError(password);
-    }
-    if (!isValidEmail(email)) {
+    else if (!isValidEmail(email)) {
         console.log("email invalid");
         displayInvalidError(email);
-        submit = false;
+        return false;
     }
     else {
         console.log("email valid");
         removeInvalidError(email);
     }
-    if (submit) {
-        form.submit();
-    }
-}); 
+    return true;
+}
 
-function isEmpty(input) {
-    if (input.value === null || input.value === ""){
-        return true;
+function acceptInput(input) {
+    if (input.value.length === 0) {
+        console.log("empty field");
+        displayEmptyError(input);
+        return false;
     }
-    return false;
+    removeEmptyError(input);
+    return true;
 }
 
 function isValidEmail(input) {
