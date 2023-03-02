@@ -21,17 +21,17 @@ form.addEventListener("submit", function(event) {
 
 function acceptEmail() {
     if (email.value.length === 0) {
+        removeError(email); //if the other error was up, we want to replace it
         displayEmptyError(email);
         return false;
     }
     else if (!isValidEmail(email)) {
-        console.log("email invalid");
+        removeError(email);
         displayInvalidError(email);
         return false;
     }
     else {
-        console.log("email valid");
-        removeInvalidError(email);
+        removeError(email);
     }
     return true;
 
@@ -47,7 +47,7 @@ function acceptInput(input) {
         displayEmptyError(input);
         return false;
     }
-    removeEmptyError(input);
+    removeError(input);
     return true;
 }
 
@@ -85,15 +85,7 @@ function displayInvalidError(input) {
     }
 }
 
-function removeEmptyError(input) {
-    removeHighlightError(input);
-    const sibling = input.nextSibling;
-    if (sibling !== null && sibling.nodeName === "P"){
-        sibling.remove();
-    }
-}
-
-function removeInvalidError(input) {
+function removeError(input) {
     removeHighlightError(input);
     const sibling = input.nextSibling;
     if (sibling !== null && sibling.nodeName === "P"){
